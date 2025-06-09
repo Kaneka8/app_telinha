@@ -1,0 +1,1 @@
+// Arquivo: verify-couple.tsx

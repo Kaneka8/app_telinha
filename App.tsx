@@ -1,0 +1,1 @@
+// Arquivo: App.tsx

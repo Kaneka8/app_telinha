@@ -1,0 +1,1 @@
+// Arquivo: randomPick.ts

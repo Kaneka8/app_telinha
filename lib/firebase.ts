@@ -1,0 +1,1 @@
+// Arquivo: firebase.ts
