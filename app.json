@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+    "entryPoint": "node_modules/expo-router/entry"
     },
     "android": {
       "adaptiveIcon": {
