@@ -1,23 +1,23 @@
-// app/login.tsx
 import { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useRouter } from 'expo-router';
 
-export default function LoginScreen() {
+export default function SignupScreen() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.replace('/tabs/romantic');
-    } catch (error) {
-      Alert.alert('Erro ao entrar', error.message);
+      await createUserWithEmailAndPassword(auth, email, password);
+      Alert.alert('Conta criada!', 'Você já pode fazer login.');
+      router.replace('/login');
+    } catch (error: any) {
+      Alert.alert('Erro ao cadastrar', error.message);
     } finally {
       setLoading(false);
     }
@@ -25,7 +25,7 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Entrar</Text>
+      <Text style={styles.title}>Criar Conta</Text>
       <TextInput
         style={styles.input}
         placeholder="E-mail"
@@ -41,9 +41,9 @@ export default function LoginScreen() {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title={loading ? 'Entrando...' : 'Entrar'} onPress={handleLogin} disabled={loading} />
-      <Text style={styles.link} onPress={() => router.push('/signup')}>
-        Criar conta
+      <Button title={loading ? 'Cadastrando...' : 'Cadastrar'} onPress={handleSignup} disabled={loading} />
+      <Text style={styles.link} onPress={() => router.replace('/login')}>
+        Voltar para login
       </Text>
     </View>
   );

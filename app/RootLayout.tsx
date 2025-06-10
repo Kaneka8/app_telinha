@@ -1,10 +1,10 @@
-import { Slot } from 'expo-router';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AuthProvider } from '@/context/AuthContext';
 import { useFonts } from 'expo-font';
-import { useEffect } from 'react';
+import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { AuthProvider } from '../context/AuthContext';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -25,7 +25,7 @@ export default function RootLayout() {
   );
 }
 
- export default function Layout() {
+export default function Layout() {
   return (
     <AuthProvider>
       <Slot />
