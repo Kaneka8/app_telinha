@@ -1,7 +1,7 @@
 // screens/ai-positions.tsx
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, Button, ActivityIndicator } from 'react-native';
-import { db } from '../firebaseConfig';
+import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
 const AiPositions = () => {

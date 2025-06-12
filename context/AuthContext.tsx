@@ -1,20 +1,18 @@
+// context/AuthContext.tsx
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '../firebase'; // ajuste o caminho conforme seu projeto
+import { auth } from '../lib/auth'; // Caminho atualizado
 
-// 1. Tipagem do contexto
 type AuthContextType = {
   user: User | null;
   loading: boolean;
 };
 
-// 2. Criação do contexto
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
 });
 
-// 3. Componente que envolve sua aplicação
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -25,7 +23,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false);
     });
 
-    return unsubscribe; // limpa o listener no unmount
+    return unsubscribe;
   }, []);
 
   return (
@@ -35,5 +33,4 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// 4. Hook customizado para usar o contexto facilmente
 export const useAuth = () => useContext(AuthContext);

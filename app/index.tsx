@@ -6,5 +6,5 @@ export default function Index() {
 
   if (loading) return null;
 
-  return <Redirect href={user ? '/tabs/romantic' : '/login'} />;
+  return <Redirect href={user ? './tabs/romantic' : '/login'} />;
 }

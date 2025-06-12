@@ -1,3 +1,4 @@
+// firebaseConfig.ts
 export const firebaseConfig = {
   apiKey: "AIzaSyDrfYPRgtKfBHbLdv1xYoj6tr23FlygdZY",
   authDomain: "telinha-f84f0.firebaseapp.com",
