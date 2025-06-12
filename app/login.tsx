@@ -14,9 +14,21 @@ export default function LoginScreen() {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.replace('/tabs/romantic');
-    } catch (error) {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (user.emailVerified) {
+        // ✅ E-mail confirmado
+        router.replace('./tabs/romantic');
+      } else {
+        // ❌ E-mail não confirmado
+        Alert.alert(
+          'Verificação necessária',
+          'Seu e-mail ainda não foi verificado. Verifique sua caixa de entrada.'
+        );
+      }
+
+    } catch (error: any) {
       Alert.alert('Erro ao entrar', error.message);
     } finally {
       setLoading(false);

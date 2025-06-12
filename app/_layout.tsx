@@ -3,8 +3,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-
-import { AuthProvider } from '../context/AuthContext';
+import AuthProvider from '../context/AuthContext';
+import Toast from 'react-native-toast-message';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -20,15 +20,10 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <Slot />
+      <AuthProvider>
+        <Slot />
+        <Toast />
+      </AuthProvider>
     </SafeAreaProvider>
-  );
-}
-
- export default function Layout() {
-  return (
-    <AuthProvider>
-      <Slot />
-    </AuthProvider>
   );
 }
